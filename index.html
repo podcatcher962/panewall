@@ -38,9 +38,15 @@ h1 i{font-style:normal;font-weight:400;color:var(--tx2);font-size:18px;letter-sp
 .note a{color:var(--acc)}
 footer{margin-top:28px;font-size:12px;color:#6B6862}
 #busuanzi_container_page_pv{margin-top:8px;font-size:12px;color:#6B6862}
+/* 语言切换：固定右上角。整页默认跟随浏览器语言，这里给一个手动覆盖入口 */
+#langsw{position:fixed;top:14px;right:16px;z-index:9}
+#langsw button{background:var(--card);color:var(--tx2);border:1px solid var(--line);border-radius:999px;
+  font:inherit;font-size:12.5px;padding:5px 13px;cursor:pointer;transition:color .12s,border-color .12s}
+#langsw button:hover{color:var(--tx);border-color:var(--acc)}
 </style>
 </head>
 <body>
+<div id="langsw"><button id="langBtn" type="button" title="Language / 语言">EN</button></div>
 <main>
   <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
     <rect width="32" height="32" rx="7" fill="#1B1C1F"/>
@@ -50,28 +56,104 @@ footer{margin-top:28px;font-size:12px;color:#6B6862}
     <rect x="17" y="17" width="9" height="9" rx="2" fill="#4A9EFF"/>
   </svg>
   <h1>联屏<i>PaneWall</i></h1>
-  <p class="sub">把散落各处的直播源收拢成一面墙 —— 单文件播放器，免安装、离线可用。</p>
+  <p class="sub" data-t="sub"></p>
   <ul class="tags">
-    <li>导入自己的 m3u</li>
-    <li>多画面墙</li>
-    <li>实时字幕与翻译</li>
-    <li>截图 / 录像 / 录音</li>
-    <li>不内置任何频道源</li>
+    <li data-t="tag1"></li>
+    <li data-t="tag2"></li>
+    <li data-t="tag3"></li>
+    <li data-t="tag4"></li>
+    <li data-t="tag5"></li>
   </ul>
-  <a class="go" href="./web/PaneWall.html">在线试玩<em>Open</em></a><br>
-  <a class="alt" href="https://github.com/podcatcher962/panewall/releases/latest">下载桌面版<em>Windows exe · 推荐</em></a>
+  <a class="go" href="./web/PaneWall.html"><span data-t="go"></span><em data-t="go_em"></em></a><br>
+  <a class="alt" href="https://github.com/podcatcher962/panewall/releases/latest"><span data-t="alt"></span><em data-t="alt_em"></em></a>
 
-  <div class="note">
-    <b>想要「能截图、能录像」就装桌面版。</b>浏览器有一条硬限制：源不给跨域许可，页面就既截不了图也录不了音、抓不到音轨做字幕。桌面版自带<b>本机加速代理</b>，把那些请求先经你自己的电脑转一圈，浏览器就当成同源 —— 于是<b>截图、录像、录音、实时字幕对任何源都能用</b>，全程在本机，不外发任何数据。<br><br>
-    <b>在线版还有个限制：</b>本页走 https，网页在 https 下加载 http 的流会被浏览器当成「混合内容」拦掉 —— 这是浏览器的安全策略，不是工具的问题，而很多直播源恰恰是 http。所以在线版适合<b>试玩和分享</b>；想本地打开不装 exe，也可以到 <a href="https://github.com/podcatcher962/panewall">仓库</a>下载 <code>web/PaneWall.html</code> 双击打开。
-  </div>
+  <div class="note" data-t-html="note"></div>
 
   <footer>
-    © 永远的兰兰 (Lanlan Eternal) · v1.7<br>
-    本工具不提供、不存储、不分发任何频道源
-    <div id="busuanzi_container_page_pv" style="display:none">👁 本页访问 <span id="busuanzi_value_page_pv"></span> 次 · 访客 <span id="busuanzi_value_site_uv"></span> 人</div>
+    <span data-t="foot1"></span><br>
+    <span data-t="foot2"></span>
+    <div id="busuanzi_container_page_pv" style="display:none">
+      <span data-t="pv"></span> <span id="busuanzi_value_page_pv"></span> · <span data-t="uv"></span> <span id="busuanzi_value_site_uv"></span>
+    </div>
   </footer>
 </main>
+<script>
+/* 落地页双语：默认跟随浏览器语言（与主程序一致的规则：zh* → 中文，其余 → 英文），
+   右上角可手动覆盖并记住。这样非中文用户不会一进门就是满屏中文。 */
+(function () {
+  var T = {
+    zh: {
+      title: '联屏 PaneWall — 把直播源收拢成一面墙',
+      desc: '单文件 M3U8 / IPTV 播放器：导入自己的 m3u 源、多画面墙、抓播放器内部声音做实时字幕与翻译。免安装、离线可用、不内置任何频道源。',
+      sub: '把散落各处的直播源收拢成一面墙 —— 单文件播放器，免安装、离线可用。',
+      tag1: '导入自己的 m3u', tag2: '多画面墙', tag3: '实时字幕与翻译',
+      tag4: '截图 / 录像 / 录音', tag5: '不内置任何频道源',
+      go: '在线试玩', go_em: 'Open',
+      alt: '下载桌面版', alt_em: 'Windows exe · 推荐',
+      note: '<b>想要「能截图、能录像」就装桌面版。</b>浏览器有一条硬限制：源不给跨域许可，页面就既截不了图也录不了音、抓不到音轨做字幕。桌面版自带<b>本机加速代理</b>，把那些请求先经你自己的电脑转一圈，浏览器就当成同源 —— 于是<b>截图、录像、录音、实时字幕对任何源都能用</b>，全程在本机，不外发任何数据。<br><br>'
+          + '<b>在线版还有个限制：</b>本页走 https，网页在 https 下加载 http 的流会被浏览器当成「混合内容」拦掉 —— 这是浏览器的安全策略，不是工具的问题，而很多直播源恰恰是 http。所以在线版适合<b>试玩和分享</b>；想本地打开不装 exe，也可以到 <a href="https://github.com/podcatcher962/panewall">仓库</a>下载 <code>web/PaneWall.html</code> 双击打开。',
+      foot1: '© 永远的兰兰 (Lanlan Eternal) · v1.8',
+      foot2: '本工具不提供、不存储、不分发任何频道源',
+      pv: '👁 本页访问', uv: '访客'
+    },
+    en: {
+      title: 'PaneWall — Gather your live streams onto one wall',
+      desc: 'A single-file M3U8 / IPTV player: import your own m3u playlists, a multi-view wall, and live subtitles plus translation taken from the player\'s own audio. No install, works offline, ships no channels of its own.',
+      sub: 'Gather scattered live streams onto one wall \u2014 a single-file player. No install, works offline.',
+      tag1: 'Import your own m3u', tag2: 'Multi-view wall', tag3: 'Live subtitles & translation',
+      tag4: 'Snapshot / video / audio', tag5: 'Ships no channels',
+      go: 'Try it online', go_em: 'Open',
+      alt: 'Desktop build', alt_em: 'Windows exe \u00b7 recommended',
+      note: '<b>Want snapshot and recording? Install the desktop build.</b> Browsers have a hard rule: if a source sends no CORS headers, the page can neither snapshot nor record it, and cannot tap its audio for subtitles. The desktop build ships a <b>local proxy</b> that routes those requests through your own machine first, so the browser treats them as same-origin \u2014 <b>snapshot, video, audio and live subtitles then work on any source</b>. Everything stays on your machine; nothing is sent anywhere.<br><br>'
+          + '<b>One more limit online:</b> this page is served over https, and loading an http stream from an https page is blocked by browsers as "mixed content". That is a browser security policy, not a flaw in the tool \u2014 and many live sources are http. So the online version is best for <b>trying and sharing</b>; to open it locally without the exe, grab <code>web/PaneWall.html</code> from the <a href="https://github.com/podcatcher962/panewall">repository</a> and double-click it.',
+      foot1: '© 永远的兰兰 (Lanlan Eternal) \u00b7 v1.8',
+      foot2: 'This tool provides, stores and distributes no channels of its own',
+      pv: '👁 views', uv: 'visitors'
+    }
+  };
+
+  // 手动选择优先，其次跟随浏览器语言
+  function pick() {
+    try {
+      var v = localStorage.getItem('PW_LANG');
+      if (v === 'zh' || v === 'en') return v;
+    } catch (e) {}
+    var l = '';
+    try { l = (navigator.languages && navigator.languages[0]) || navigator.language || ''; } catch (e) {}
+    return /^zh/i.test(String(l)) ? 'zh' : 'en';
+  }
+
+  var cur = pick();
+  function paint(l) {
+    cur = l;
+    var t = T[l], i;
+    var nodes = document.querySelectorAll('[data-t]');
+    for (i = 0; i < nodes.length; i++) {
+      var k = nodes[i].getAttribute('data-t');
+      if (t[k] != null) nodes[i].textContent = t[k];
+    }
+    var hn = document.querySelectorAll('[data-t-html]');
+    for (i = 0; i < hn.length; i++) {
+      var k2 = hn[i].getAttribute('data-t-html');
+      if (t[k2] != null) hn[i].innerHTML = t[k2];
+    }
+    document.documentElement.lang = (l === 'en') ? 'en' : 'zh-CN';
+    document.title = t.title;
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', t.desc);
+    var b = document.getElementById('langBtn');
+    if (b) b.textContent = (l === 'en') ? '中文' : 'EN';   // 按钮显示「切过去」的那个语言
+  }
+  paint(cur);
+
+  var btn = document.getElementById('langBtn');
+  if (btn) btn.addEventListener('click', function () {
+    var next = (cur === 'en') ? 'zh' : 'en';
+    try { localStorage.setItem('PW_LANG', next); } catch (e) {}
+    paint(next);
+  });
+})();
+</script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
