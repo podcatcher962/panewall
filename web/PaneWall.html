@@ -323,7 +323,6 @@ html[data-motion="low"] *{animation:none!important; transition:none!important}
             <button class="btn sm" data-act="impUrl" data-i18n="b_url">从网址</button>
           </div>
           <div class="row">
-            <button class="btn sm" data-act="builtin" data-i18n="b_builtin">推荐源</button>
             <button class="btn sm" data-act="scan" data-i18n="b_scan">体检本类</button>
             <button class="btn sm" data-act="clear" data-i18n="b_clear">清空库</button>
           </div>
@@ -570,7 +569,7 @@ var I18N = {
     nav_live: '直播', nav_fav: '收藏', nav_rec: '录制', nav_mos: '多画面', nav_set: '设置',
     nav_help: '帮助', nav_faq: '常见问题', nav_disc: '免责声明', nav_about: '关于',
     ph_search: '搜索频道（可拼音首字母，如 cctv / ys）',
-    b_file: '导入文件', b_dir: '导入文件夹', b_url: '从网址', b_builtin: '推荐源',
+    b_file: '导入文件', b_dir: '导入文件夹', b_url: '从网址',
     b_scan: '体检本类', b_clear: '清空库',
     osm_big: '还没有选台',
     osm_sm: '左侧导入你的 .m3u 播放列表（可以直接选桌面上的 M3U8 文件夹），点频道即可开播。',
@@ -661,7 +660,7 @@ var I18N = {
     nav_live: 'Live', nav_fav: 'Favorites', nav_rec: 'Records', nav_mos: 'Multi', nav_set: 'Settings',
     nav_help: 'Help', nav_faq: 'FAQ', nav_disc: 'Disclaimer', nav_about: 'About',
     ph_search: 'Search channels (pinyin initials ok, e.g. cctv / ys)',
-    b_file: 'Files', b_dir: 'Folder', b_url: 'From URL', b_builtin: 'Presets',
+    b_file: 'Files', b_dir: 'Folder', b_url: 'From URL',
     b_scan: 'Check list', b_clear: 'Clear',
     osm_big: 'No channel selected',
     osm_sm: 'Import your .m3u playlists on the left (you can pick the M3U8 folder on your desktop), then click a channel to play.',
@@ -783,7 +782,6 @@ var DOCS = {
       + '<li><b>导入文件夹</b>：选桌面上的 <code>M3U8</code> 文件夹（或任意含 .m3u 的目录）。这个文件夹会变成一个<b>独立源库</b>，库名就是文件夹名。</li>'
       + '<li>再导入<b>另一个</b>文件夹 → 会另建一个源库，两批源<b>各归各的，绝不混在一起</b>。若文件夹重名，会问你「合并进去」还是「另建一个」。</li>'
       + '<li><b>导入文件</b>：只选几个 .m3u / .m3u8 文件。<b>从网址</b>：粘一个在线播放列表地址。也可以直接把文件或文件夹<b>拖到窗口里</b>。</li>'
-      + '<li><b>推荐源</b>：几个公开的稳定列表，一键载入（同样会单独建库）。</li></ul>'
       + '<h3>2. 源库 · 音视频分列表</h3><ul>'
       + '<li>左上角下拉框切换源库：<b>全部源库</b> 是合起来看，选中某个库就只看它。下拉框右侧 ✎ 重命名、🗑 删除该库（收藏和自建清单不受影响）。</li>'
       + '<li>下面的「全部 / 📺视频 / 🎵音频」把两类内容<b>分列表显示</b>——电台不会和电视台挤在一起。</li>'
@@ -808,14 +806,13 @@ var DOCS = {
       + '<h3>5. 为什么有些台播不出来</h3>'
       + '<p>网页版受浏览器的同源策略限制：源站若没给跨域许可，浏览器会拒绝拉流。这不是你网络的问题，换一个台试试即可。若某个源压根没给跨域许可，软件会自动退回浏览器原生播放：<b>能看，但截不了图、录不了音</b>，界面会明确告诉你。桌面版会内置本机代理，能把绝大多数源接回来。</p>'
       + '<h3>6. 关于频道源</h3>'
-      + '<p>本工具<b>不内置任何频道源</b>，也不收集、不转播任何内容。列表里出现什么，取决于你导入了什么。直播源时效很短，一批源放几个月失效一半是常态——建议留着原始 .m3u 文件，用「体检」定期筛一遍。</p>'
+      + '<p>本工具<b>不内置任何频道源</b>——连第三方公开索引的地址也不预置，全部由你自己导入。也不收集、不转播任何内容。列表里出现什么，取决于你导入了什么。直播源时效很短，一批源放几个月失效一半是常态——建议留着原始 .m3u 文件，用「体检」定期筛一遍。</p>'
       + '<div class="foot">© 永远的兰兰 (Lanlan Eternal)</div>',
     en: '<h2>Help · How to use</h2>'
       + '<h3>1. Import channels (each folder = its own library)</h3><ul>'
       + '<li><b>Folder</b>: pick the <code>M3U8</code> folder on your desktop. It becomes a <b>separate library</b> named after the folder.</li>'
       + '<li>Import <b>another</b> folder → it gets its own library. The two <b>never mix</b>. If the name collides you are asked to merge or create a separate one.</li>'
       + '<li><b>Files</b>: a few .m3u / .m3u8. <b>From URL</b>: paste an online playlist. You can also <b>drag files or a folder</b> onto the window.</li>'
-      + '<li><b>Presets</b>: a few public, stable lists — one click, also its own library.</li></ul>'
       + '<h3>2. Libraries · audio split from video</h3><ul>'
       + '<li>Switch libraries with the drop-down (top-left). <b>All libraries</b> merges everything; pick one to isolate it. ✎ renames, 🗑 deletes that library (favorites and custom lists are kept).</li>'
       + '<li><b>All / 📺Video / 🎵Audio</b> shows the two kinds as <b>separate lists</b> — radio never gets jumbled with TV.</li>'
@@ -1857,24 +1854,6 @@ function fetchUrlList(url, name) {
     saveDB(); renderAll();
     toast(L('imported', { a: 1, b: added }));
   }).catch(function () { toast(L('fetch_fail')); });
-}
-var BUILTINS = [
-  ['国内频道 · iptv-org', 'https://iptv-org.github.io/iptv/countries/cn.m3u'],
-  ['中文频道 · iptv-org', 'https://iptv-org.github.io/iptv/languages/zho.m3u'],
-  ['央视频道 · hacks.tools', 'https://live.hacks.tools/tv/ipv4/categories/%E5%A4%AE%E8%A7%86%E9%A2%91%E9%81%93.m3u'],
-  ['卫视频道 · hacks.tools', 'https://live.hacks.tools/tv/ipv4/categories/%E5%8D%AB%E8%A7%86%E9%A2%91%E9%81%93.m3u'],
-  ['地方频道 · hacks.tools', 'https://live.hacks.tools/tv/ipv4/categories/%E5%9C%B0%E6%96%B9%E9%A2%91%E9%81%93.m3u'],
-  ['体育频道 · hacks.tools', 'https://live.hacks.tools/tv/ipv4/categories/%E4%BD%93%E8%82%B2%E9%A2%91%E9%81%93.m3u'],
-  ['英语频道 · hacks.tools', 'https://live.hacks.tools/iptv/languages/eng.m3u'],
-  ['全球全部 · iptv-org（很大）', 'https://iptv-org.github.io/iptv/index.m3u']
-];
-function builtinDialog() {
-  var h = '<h3>' + esc(L('b_builtin')) + '</h3><div class="pick" style="flex-direction:column;align-items:stretch">';
-  for (var i = 0; i < BUILTINS.length; i++) {
-    h += '<button style="text-align:left;border-radius:8px" data-bi="' + i + '">' + esc(BUILTINS[i][0]) + '</button>';
-  }
-  h += '</div><div class="acts"><button class="btn ghost" data-close="1">' + esc(L('b_cancel')) + '</button></div>';
-  openModal(h);
 }
 
 /* ---------------- favorites & lists ---------------- */
@@ -4074,8 +4053,7 @@ function bind() {
     if ((t = closestAttr(e.target, 'data-mosclose'))) { mosClose(parseInt(t.getAttribute('data-mosclose'), 10)); return; }
     if ((t = closestAttr(e.target, 'data-cell'))) { MOS.sel = parseInt(t.getAttribute('data-cell'), 10); renderMos(); return; }
     if ((t = closestAttr(e.target, 'data-putto'))) { putToList(t.getAttribute('data-putto'), pendingCh); return; }
-    if ((t = closestAttr(e.target, 'data-bi'))) { var bi = BUILTINS[parseInt(t.getAttribute('data-bi'), 10)]; closeModal(); fetchUrlList(bi[1], bi[0]); return; }
-    if ((t = closestAttr(e.target, 'data-recdl'))) { var r1 = RECS[parseInt(t.getAttribute('data-recdl'), 10)]; if (r1) download(r1.url, r1.name); return; }
+      if ((t = closestAttr(e.target, 'data-recdl'))) { var r1 = RECS[parseInt(t.getAttribute('data-recdl'), 10)]; if (r1) download(r1.url, r1.name); return; }
     if ((t = closestAttr(e.target, 'data-recdel'))) { var idx = parseInt(t.getAttribute('data-recdel'), 10); var r2 = RECS[idx]; if (r2) { try { URL.revokeObjectURL(r2.url); } catch (x) {} RECS.splice(idx, 1); renderRec(); } return; }
     if ((t = closestAttr(e.target, 'data-segval'))) { applySeg(t); return; }
     if ((t = closestAttr(e.target, 'data-act2'))) { modalAct(t.getAttribute('data-act2')); return; }
@@ -4213,7 +4191,6 @@ function act(a) {
     case 'impFile': $('#fFiles').click(); break;
     case 'impDir': $('#fDir').click(); break;
     case 'impUrl': importUrlDialog(); break;
-    case 'builtin': builtinDialog(); break;
     case 'scan': scanCurrent(); break;
     case 'clear': {
       var lb0 = curLib();
