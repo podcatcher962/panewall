@@ -28,7 +28,7 @@ A **single-file player** that gathers your scattered live sources into one wall 
 | 字幕 | **抓播放器内部声音**做实时识别与翻译 —— 不需要麦克风；可译成 30 多种语言，台自带字幕轨也能接过来一起翻 |
 | 翻译 | 浏览器内置离线模型（免注册、不要 Key、文字不出本机）/ MyMemory / 硅基流动免费模型，三选一 |
 | 状态 | 播放器上方实时状态条：连接用时、试到第几条线路、起播耗时、缓冲进度、下载速度；连不上会说明原因 |
-| 其他 | 一键字幕、一键体检、键盘与触摸操作、中文 / English 双语界面、JSON 备份与恢复 |
+| 其他 | 一键字幕、一键体检、键盘与触摸操作、中文 / English 双语界面（**默认跟随系统语言**，设置里可手动切换）、JSON 备份与恢复 |
 
 ### 三个版本，怎么选
 
@@ -102,7 +102,7 @@ A purely local M3U / M3U8 / IPTV player. It **does not provide, bundle or recomm
 | Translation | Built-in browser offline model (no signup, no key, text never leaves your machine) / MyMemory / SiliconFlow free models — pick one |
 | Status | A live status bar above the player: connect time, which line is being tried, start-up time, buffer, download speed; failures explain themselves |
 | Proxy | The **desktop build** ships a local proxy (bound to `127.0.0.1` only) so that sources **without CORS headers** can still be snapshotted, recorded and transcribed; one-click self-test, can be switched off |
-| And | One-click subtitles, one-click health check, keyboard and touch controls, Chinese / English UI, JSON backup and restore |
+| And | One-click subtitles, one-click health check, keyboard and touch controls, Chinese / English UI (**follows your system language by default**, switchable in Settings), JSON backup and restore |
 
 ### Three builds, which one
 
