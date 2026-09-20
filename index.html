@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<title>联屏 PaneWall — 把直播源收拢成一面墙</title>
+<meta name="description" content="单文件 M3U8 / IPTV 播放器：导入自己的 m3u 源、多画面墙、抓播放器内部声音做实时字幕与翻译。免安装、离线可用、不内置任何频道源。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B1C1F'/%3E%3Crect x='6' y='6' width='9' height='9' rx='2' fill='%234A9EFF'/%3E%3Crect x='17' y='6' width='9' height='9' rx='2' fill='%23E6E4E1'/%3E%3Crect x='6' y='17' width='9' height='9' rx='2' fill='%23E6E4E1'/%3E%3Crect x='17' y='17' width='9' height='9' rx='2' fill='%234A9EFF'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#131416;--card:#1D1F23;--line:#2E3238;--tx:#E9E7E4;--tx2:#9A9792;--acc:#4A9EFF}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);
+  font:15px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+  -webkit-text-size-adjust:100%;display:flex;align-items:center;justify-content:center;
+  min-height:100vh;padding:28px 18px}
+main{width:100%;max-width:520px;text-align:center}
+.mark{width:64px;height:64px;margin:0 auto 18px;display:block}
+h1{font-size:26px;font-weight:600;margin:0 0 6px;letter-spacing:.5px}
+h1 i{font-style:normal;font-weight:400;color:var(--tx2);font-size:18px;letter-spacing:1px;margin-left:6px}
+.sub{color:var(--tx2);font-size:14px;margin:0 0 22px}
+.tags{list-style:none;display:flex;flex-wrap:wrap;gap:7px;justify-content:center;padding:0;margin:0 0 26px}
+.tags li{font-size:12.5px;color:var(--tx2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;background:var(--card)}
+.go{display:inline-block;background:var(--acc);color:#08131F;text-decoration:none;font-weight:600;
+  font-size:16px;padding:13px 34px;border-radius:11px;transition:transform .12s ease,filter .12s ease}
+.go:hover{filter:brightness(1.08)}
+.go:active{transform:scale(.98)}
+.go em{font-style:normal;font-weight:400;font-size:13px;opacity:.62;margin-left:7px}
+.note{margin:26px auto 0;max-width:470px;text-align:left;background:var(--card);
+  border:1px solid var(--line);border-radius:11px;padding:14px 16px;font-size:13px;color:var(--tx2);line-height:1.65}
+.note b{color:var(--tx);font-weight:600}
+.note a{color:var(--acc)}
+footer{margin-top:28px;font-size:12px;color:#6B6862}
+#busuanzi_container_page_pv{margin-top:8px;font-size:12px;color:#6B6862}
+</style>
+</head>
+<body>
+<main>
+  <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+    <rect width="32" height="32" rx="7" fill="#1B1C1F"/>
+    <rect x="6" y="6" width="9" height="9" rx="2" fill="#4A9EFF"/>
+    <rect x="17" y="6" width="9" height="9" rx="2" fill="#E6E4E1"/>
+    <rect x="6" y="17" width="9" height="9" rx="2" fill="#E6E4E1"/>
+    <rect x="17" y="17" width="9" height="9" rx="2" fill="#4A9EFF"/>
+  </svg>
+  <h1>联屏<i>PaneWall</i></h1>
+  <p class="sub">把散落各处的直播源收拢成一面墙 —— 单文件播放器，免安装、离线可用。</p>
+  <ul class="tags">
+    <li>导入自己的 m3u</li>
+    <li>多画面墙</li>
+    <li>实时字幕与翻译</li>
+    <li>截图 / 录像 / 录音</li>
+    <li>不内置任何频道源</li>
+  </ul>
+  <a class="go" href="./web/PaneWall.html">进入应用<em>Open</em></a>
+
+  <div class="note">
+    <b>在线版的限制：</b>本页走 https，网页在 https 下加载 http 的流会被浏览器当成「混合内容」拦掉 —— 这是浏览器的安全策略，不是工具的问题，而很多直播源恰恰是 http。
+    所以在线版适合<b>试玩和分享</b>；真要日常看，请到 <a href="https://github.com/podcatcher962/panewall">GitHub 仓库</a>把 <code>web/PaneWall.html</code> 下载下来双击打开，本地没有这条限制。
+  </div>
+
+  <footer>
+    © 永远的兰兰 (Lanlan Eternal) · v1.6<br>
+    本工具不提供、不存储、不分发任何频道源
+    <div id="busuanzi_container_page_pv" style="display:none">👁 本页访问 <span id="busuanzi_value_page_pv"></span> 次 · 访客 <span id="busuanzi_value_site_uv"></span> 人</div>
+  </footer>
+</main>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</body>
+</html>
