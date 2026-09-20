@@ -30,19 +30,29 @@ A **single-file player** that gathers your scattered live sources into one wall 
 | 状态 | 播放器上方实时状态条：连接用时、试到第几条线路、起播耗时、缓冲进度、下载速度；连不上会说明原因 |
 | 其他 | 一键字幕、一键体检、键盘与触摸操作、中文 / English 双语界面、JSON 备份与恢复 |
 
-### 用哪个版本
+### 三个版本，怎么选
 
-| | 在线版（浏览器打开） | 本地版（下载文件双击） |
-|---|---|---|
-| 装什么 | 什么都不用 | 什么都不用 |
-| http 源 | **播不了** —— 见下方说明 | 可以 |
-| 数据 | 存在你浏览器里 | 存在你浏览器里 |
-| 适合 | 试玩、分享给别人看 | 日常使用 |
+| | 桌面版 exe（推荐） | 本地 HTML | 在线版 |
+|---|---|---|---|
+| 拿什么 | Release 里下载 `PaneWall.exe` | 下载 `web/PaneWall.html` | 直接打开网址 |
+| 装什么 | 免安装，双击即用 | 什么都不用 | 什么都不用 |
+| http 源 | 可以 | 可以 | **播不了** —— 见下方说明 |
+| 截图 / 录像 / 录音 | **任何源都行**（本机代理） | 只对给了跨域许可的源有效 | 同左 |
+| 实时字幕（抓内部音轨） | 可以，任何源 | 只对有跨域许可的源 | 同左 |
+| 适合 | 日常使用 | 不想装 exe、想随手带走一个文件 | 试玩、分享给别人看 |
+
+**桌面版多了什么**：exe 里自带一个**只监听本机**（127.0.0.1）的加速代理。浏览器有一条硬限制 —— 源不给跨域许可，页面就既截不了图、也录不了音、更抓不到音轨去做字幕。桌面版把这类请求先经你自己的电脑转一圈，浏览器就当成同源，于是**截图、录像、录音、实时字幕对任何源都能用**。数据始终在本机，代理不对外网开放。设置面板里有一键自检，会当场告诉你通没通；不想要就关掉，关掉即恢复直连（候选地址里始终留着一条直连兜底，代理出问题也不会因此看不了）。
 
 **在线版为什么播不了 http 源**：GitHub Pages 走 https，网页在 https 下再去加载 http 的流，会被浏览器当成「混合内容」直接拦掉，这是浏览器的安全策略，不是本工具的限制。很多直播源恰恰是 http。所以：
 
 - 想**试玩**、想**发给别人看一眼界面** → 用在线版
-- 想**真的看** → 把 `PaneWall.html` 下载下来，双击用浏览器打开，本地打开没有这条限制
+- 想**真的看** → 下载 exe，或者把 `PaneWall.html` 下载下来双击用浏览器打开，本地打开没有这条限制
+
+### 桌面版（Windows）
+
+1. 到 [Releases](https://github.com/podcatcher962/panewall/releases) 下载 `PaneWall.exe`，双击运行 —— 免安装、单文件、可离线
+2. 首次运行若提示「Windows 已保护你的电脑」，点「更多信息 → 仍要运行」（未做代码签名，属正常现象）
+3. 需要系统里有 **WebView2 运行时** —— Windows 10/11 一般自带；没有的话装一下微软官方的 [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/)（很小，装一次永久有效）
 
 ### 怎么用
 
@@ -91,18 +101,29 @@ A purely local M3U / M3U8 / IPTV player. It **does not provide, bundle or recomm
 | Subtitles | **Taps the player's own audio** for live speech-to-text and translation — no microphone needed; 30+ target languages; a channel's own subtitle track is translated too |
 | Translation | Built-in browser offline model (no signup, no key, text never leaves your machine) / MyMemory / SiliconFlow free models — pick one |
 | Status | A live status bar above the player: connect time, which line is being tried, start-up time, buffer, download speed; failures explain themselves |
+| Proxy | The **desktop build** ships a local proxy (bound to `127.0.0.1` only) so that sources **without CORS headers** can still be snapshotted, recorded and transcribed; one-click self-test, can be switched off |
 | And | One-click subtitles, one-click health check, keyboard and touch controls, Chinese / English UI, JSON backup and restore |
 
-### Which build
+### Three builds, which one
 
-| | Online (open in a browser) | Local (download and double-click) |
-|---|---|---|
-| Install | nothing | nothing |
-| http sources | **will not play** — see below | fine |
-| Data | stays in your browser | stays in your browser |
-| Best for | trying it out, showing someone | everyday use |
+| | Desktop exe (recommended) | Local HTML | Online |
+|---|---|---|---|
+| What to get | `PaneWall.exe` from Releases | `web/PaneWall.html` | just open the URL |
+| Install | none — double-click | nothing | nothing |
+| http sources | fine | fine | **will not play** — see below |
+| Snapshot / video / audio | **any source** (local proxy) | only sources that send CORS headers | same as left |
+| Live subtitles from the player's own audio | any source | only sources that send CORS headers | same as left |
+| Best for | everyday use | a single file you can carry anywhere | trying it out, sharing |
 
-**Why the online build can't play http sources**: GitHub Pages is served over https, and a page on https loading an http stream is blocked by the browser as *mixed content*. That is a browser security rule, not a limitation of this tool — and plenty of live sources are http. So use the online build to try the interface, and download `PaneWall.html` for real use.
+**What the desktop build adds**: the exe carries a local accelerator proxy bound to `127.0.0.1` only. Browsers have a hard rule — if a source sends no CORS headers, the page can neither snapshot it, nor record it, nor tap its audio for subtitles. The desktop build routes those requests through your own machine first, so the browser sees one origin and **snapshot, video recording, audio recording and live subtitles work on any source**. Everything stays local; the proxy is never exposed to the network. The settings panel has a one-click self-test; switch it off and you are back to a direct connection (a direct fallback is always kept at the end of the list of addresses, so a proxy problem never costs you the channel).
+
+**Why the online build can't play http sources**: GitHub Pages is served over https, and a page on https loading an http stream is blocked by the browser as *mixed content*. That is a browser security rule, not a limitation of this tool — and plenty of live sources are http. So use the online build to try the interface, and download the exe or `PaneWall.html` for real use.
+
+### Desktop build (Windows)
+
+1. Download `PaneWall.exe` from [Releases](https://github.com/podcatcher962/panewall/releases) and run it — no install, one file, works offline
+2. If Windows shows "Windows protected your PC", click **More info → Run anyway** (the binary is not code-signed)
+3. You need the **WebView2 runtime**, which Windows 10/11 normally ships already; otherwise install Microsoft's [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) once
 
 ### Usage
 
@@ -126,6 +147,8 @@ A purely local M3U / M3U8 / IPTV player. It **does not provide, bundle or recomm
 - Single HTML file with [hls.js](https://github.com/video-dev/hls.js/) (Apache-2.0) embedded
 - No external requests, no tracking, no analytics; works offline (except live subtitle recognition and translation)
 - Data lives in browser `localStorage` — clearing it wipes your lists, so use **Export backup**
+- The desktop build is the same HTML plus a thin Python shell ([pywebview](https://pywebview.flowrl.com/) over the system WebView2 engine). The shell serves the page over a read-only service on `127.0.0.1`, so the page runs in a secure context (downloads, screen capture and offline storage all behave) and is not boxed in by `file://` origin rules
+- The local proxy **listens on `127.0.0.1` only** — never on the LAN or the internet. It forwards only the playback requests the page itself makes, collects and reports nothing, and stops the moment you switch it off
 
 ### The name
 
