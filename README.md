@@ -14,7 +14,7 @@ A **single-file player** that gathers your scattered live sources into one wall 
 
 ### 这是什么
 
-一个纯本地运行的 M3U / M3U8 / IPTV 播放器。它**不提供、不内置、不推荐任何频道源** —— 频道全部来自你自己导入的文件或自己填写的地址。程序本身不会向任何服务器上传你的数据。
+一个纯本地运行的 M3U / M3U8 / IPTV 播放器。它**不提供、不内置、不推荐任何频道源** —— 连第三方公开索引的地址也不预置，频道全部来自你自己导入的文件或自己填写的地址。程序本身不会向任何服务器上传你的数据。
 
 ### 功能
 
@@ -87,7 +87,7 @@ A **single-file player** that gathers your scattered live sources into one wall 
 
 ### What it is
 
-A purely local M3U / M3U8 / IPTV player. It **does not provide, bundle or recommend any channel source** — every channel comes from a file you import or a URL you type. Nothing you do is uploaded anywhere.
+A purely local M3U / M3U8 / IPTV player. It **does not provide, bundle or recommend any channel source** — not even a preset link to a public index; every channel comes from a file you import or a URL you type. Nothing you do is uploaded anywhere.
 
 ### Features
 
