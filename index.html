@@ -27,6 +27,11 @@ h1 i{font-style:normal;font-weight:400;color:var(--tx2);font-size:18px;letter-sp
 .go:hover{filter:brightness(1.08)}
 .go:active{transform:scale(.98)}
 .go em{font-style:normal;font-weight:400;font-size:13px;opacity:.62;margin-left:7px}
+.alt{display:inline-block;margin-top:10px;background:transparent;color:var(--tx);border:1px solid var(--line);
+  text-decoration:none;font-weight:600;font-size:14px;padding:11px 24px;border-radius:11px;
+  transition:border-color .12s ease,background .12s ease}
+.alt:hover{border-color:var(--acc);background:var(--card)}
+.alt em{font-style:normal;font-weight:400;font-size:12px;color:var(--tx2);margin-left:7px}
 .note{margin:26px auto 0;max-width:470px;text-align:left;background:var(--card);
   border:1px solid var(--line);border-radius:11px;padding:14px 16px;font-size:13px;color:var(--tx2);line-height:1.65}
 .note b{color:var(--tx);font-weight:600}
@@ -53,15 +58,16 @@ footer{margin-top:28px;font-size:12px;color:#6B6862}
     <li>截图 / 录像 / 录音</li>
     <li>不内置任何频道源</li>
   </ul>
-  <a class="go" href="./web/PaneWall.html">进入应用<em>Open</em></a>
+  <a class="go" href="./web/PaneWall.html">在线试玩<em>Open</em></a><br>
+  <a class="alt" href="https://github.com/podcatcher962/panewall/releases/latest">下载桌面版<em>Windows exe · 推荐</em></a>
 
   <div class="note">
-    <b>在线版的限制：</b>本页走 https，网页在 https 下加载 http 的流会被浏览器当成「混合内容」拦掉 —— 这是浏览器的安全策略，不是工具的问题，而很多直播源恰恰是 http。
-    所以在线版适合<b>试玩和分享</b>；真要日常看，请到 <a href="https://github.com/podcatcher962/panewall">GitHub 仓库</a>把 <code>web/PaneWall.html</code> 下载下来双击打开，本地没有这条限制。
+    <b>想要「能截图、能录像」就装桌面版。</b>浏览器有一条硬限制：源不给跨域许可，页面就既截不了图也录不了音、抓不到音轨做字幕。桌面版自带<b>本机加速代理</b>，把那些请求先经你自己的电脑转一圈，浏览器就当成同源 —— 于是<b>截图、录像、录音、实时字幕对任何源都能用</b>，全程在本机，不外发任何数据。<br><br>
+    <b>在线版还有个限制：</b>本页走 https，网页在 https 下加载 http 的流会被浏览器当成「混合内容」拦掉 —— 这是浏览器的安全策略，不是工具的问题，而很多直播源恰恰是 http。所以在线版适合<b>试玩和分享</b>；想本地打开不装 exe，也可以到 <a href="https://github.com/podcatcher962/panewall">仓库</a>下载 <code>web/PaneWall.html</code> 双击打开。
   </div>
 
   <footer>
-    © 永远的兰兰 (Lanlan Eternal) · v1.6<br>
+    © 永远的兰兰 (Lanlan Eternal) · v1.7<br>
     本工具不提供、不存储、不分发任何频道源
     <div id="busuanzi_container_page_pv" style="display:none">👁 本页访问 <span id="busuanzi_value_page_pv"></span> 次 · 访客 <span id="busuanzi_value_site_uv"></span> 人</div>
   </footer>
